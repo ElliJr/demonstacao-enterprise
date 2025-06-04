@@ -10,6 +10,7 @@
             font-family: Segoe UI, Arial, sans-serif;
             background: #f2f3f5;
         }
+
         .sidebar {
             position: fixed;
             left: 0;
@@ -20,6 +21,7 @@
             border-right: 8px solid #22395a;
             padding-top: 40px;
         }
+
         .sidebar button {
             display: block;
             width: 90%;
@@ -35,9 +37,17 @@
             padding-left: 18px;
             transition: background 0.2s;
         }
+
+        .sidebar button.active,
+        .sidebar button:focus {
+            background: #295a9c;
+            outline: none;
+        }
+
         .sidebar button:hover {
             background: #295a9c;
         }
+
         .topbar {
             position: fixed;
             left: 0;
@@ -50,6 +60,7 @@
             align-items: center;
             z-index: 2;
         }
+
         .topbar .logo {
             margin-left: 12px;
             font-size: 18px;
@@ -58,16 +69,38 @@
             display: flex;
             align-items: center;
         }
+
         .topbar .logo::before {
             content: "⚙️";
             font-size: 18px;
             margin-right: 8px;
         }
+
         .main-content {
             margin-left: 188px;
             margin-top: 44px;
             padding: 0 18px;
         }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
         .table-container {
             background: #fff;
             border: 2px solid #22395a;
@@ -77,35 +110,43 @@
             height: 70vh;
             overflow: auto;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 0;
         }
-        th, td {
+
+        th,
+        td {
             border-right: 1px solid #e0e0e0;
             padding: 8px 0;
             text-align: center;
             font-size: 17px;
         }
+
         th {
             color: #22395a;
             font-weight: 500;
             background: #fff;
         }
+
         tr:last-child td {
             border-bottom: none;
         }
-        th:last-child, td:last-child {
+
+        th:last-child,
+        td:last-child {
             border-right: none;
         }
-        /* Ajuste para os botões no rodapé */
+
         .footer-buttons {
             display: flex;
             justify-content: center;
             margin-top: 24px;
             gap: 32px;
         }
+
         .footer-buttons button {
             width: 120px;
             padding: 8px 0;
@@ -117,39 +158,70 @@
         }
     </style>
 </head>
+
 <body>
     <div class="topbar">
         <span class="logo">EL Enterprise Language</span>
     </div>
     <div class="sidebar">
-        <button>Inicio</button>
-        <button>Financeiro</button>
-        <button>Vendas</button>
-        <button>Clientes</button>
-        <button>Produtos</button>
-        <button>Configurações</button>
-        <button>Conta</button>
+        <button data-section="inicio" class="active">Inicio</button>
+        <button data-section="financeiro">Financeiro</button>
+        <button data-section="vendas">Vendas</button>
+        <button data-section="clientes">Clientes</button>
+        <button data-section="produtos">Produtos</button>
+        <button data-section="configuracoes">Configurações</button>
+        <button data-section="conta">Conta</button>
     </div>
     <div class="main-content">
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Produto</th>
-                        <th>Categoria</th>
-                        <th>Preço Venda</th>
-                        <th>Estoque</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Linhas de produtos podem ser adicionadas aqui -->
-                </tbody>
-            </table>
+        <div id="inicio" class="section active">
+            <div class="table-container">
+                <h2>Bem-vindo ao EL Enterprise Language</h2>
+                <p>Esta é a seção inicial do aplicativo.</p>
+            </div>
         </div>
-        <div class="footer-buttons">
-            <button></button>
-            <button></button>
+        <div id="financeiro" class="section">
+            <h2>Financeiro</h2>
+            <p>Seção de informações financeiras.</p>
         </div>
-    </div>
+        <div id="vendas" class="section">
+            <h2>Vendas</h2>
+            <p>Seção de vendas.</p>
+        </div>
+        <div id="clientes" class="section">
+            <h2>Clientes</h2>
+            <p>Seção de clientes.</p>
+        </div>
+        <div id="produtos" class="section">
+            <h2>Produtos</h2>
+            <p>Seção de produtos.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Categoria</th>
+                            <th>Preço Venda</th>
+                            <th>Estoque</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <div class="footer-buttons">
+                    <button></button>
+                    <button></button>
+                </div>
+            </div>
+            <div id="configuracoes" class="section">
+                <h2>Configurações</h2>
+                <p>Seção de configurações.</p>
+            </div>
+            <div id="conta" class="section">
+                <h2>Conta</h2>
+                <p>Seção da conta do usuário.</p>
+            </div>
+            <script src="script.js"></script>
 </body>
+
 </html>
